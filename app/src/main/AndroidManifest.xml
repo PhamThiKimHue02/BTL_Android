@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Btl">
+
+        <!-- Màn hình đầu tiên khi mở app -->
+        <activity android:name=".LoginActivity1"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Màn hình đăng nhập -->
+        <activity android:name=".LoginActivity2" />
+
+        <!-- Màn hình đăng ký -->
+        <activity android:name=".RegisterActivity" />
+
+        <!-- Màn hình chính sau khi đăng nhập -->
+        <activity android:name=".MainActivity" />
+
+        <!-- Màn hình quên mật khẩu -->
+        <activity android:name=".ForgotActivity" />
+
+        <!-- Màn hình reset mật khẩu -->
+        <activity android:name=".ResetPassActivity" />
+
+    </application>
+
+
+</manifest>

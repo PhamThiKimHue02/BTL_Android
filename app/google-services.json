@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "525031991602",
+    "project_id": "carbon-scene-452205-c0",
+    "storage_bucket": "carbon-scene-452205-c0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525031991602:android:93e1e7c2cdd59ce48e0f2b",
+        "android_client_info": {
+          "package_name": "com.example.btl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525031991602-1v8g9hv3eanjm4ednrqve5mramb55ovs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw0gbfOg26LSptQHTkXhjzmbfrE9GlX3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525031991602-1v8g9hv3eanjm4ednrqve5mramb55ovs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
