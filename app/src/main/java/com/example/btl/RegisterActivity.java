@@ -17,11 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText edtFullName, edtEmail, edtMobile, edtDOB, edtPassword, edtConfirmPassword;
@@ -120,10 +122,10 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        registerUserWithFirebase(email, password, fullName);
+        registerUserWithFirebase(email, password, fullName, mobile, dob);
     }
 
-    private void registerUserWithFirebase(String email, String password, String fullName) {
+    private void registerUserWithFirebase(String email, String password, String fullName, String mobile, String dob) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -133,10 +135,26 @@ public class RegisterActivity extends AppCompatActivity {
                                     .setDisplayName(fullName)
                                     .build();
                             user.updateProfile(profileUpdates);
+
+                            // Lưu thông tin người dùng vào Firestore
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            Map<String, Object> userData = new HashMap<>();
+                            userData.put("fullName", fullName);
+                            userData.put("email", email);
+                            userData.put("mobile", mobile);
+                            userData.put("dob", dob);
+                            userData.put("role", "user");
+
+                            db.collection("users").document(user.getUid())
+                                    .set(userData)
+                                    .addOnSuccessListener(aVoid -> {
+                                        showToast("Đăng ký thành công!");
+                                        startActivity(new Intent(RegisterActivity.this, LoginActivity2.class));
+                                        finish();
+                                    })
+                                    .addOnFailureListener(e ->
+                                            showToast("Lỗi lưu dữ liệu người dùng: " + e.getMessage()));
                         }
-                        showToast("Đăng ký thành công!");
-                        startActivity(new Intent(RegisterActivity.this, LoginActivity1.class));
-                        finish();
                     } else {
                         showToast("Đăng ký thất bại: " + task.getException().getMessage());
                     }
@@ -144,11 +162,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private boolean isValidFullName(String name) {
-        return name.matches("^[a-zA-Z\u00C0-\u1EF9 ]{3,}$"); // Cho phép chữ cái và khoảng trắng
+        return name.matches("^[a-zA-Z\u00C0-\u1EF9 ]{3,}$");
     }
 
     private boolean isValidPhoneNumber(String phone) {
-        return phone.matches("^[0-9]{10,11}$"); // Chỉ chứa số, dài 10-11 ký tự
+        return phone.matches("^[0-9]{10,11}$");
     }
 
     private boolean isValidPassword(String password) {

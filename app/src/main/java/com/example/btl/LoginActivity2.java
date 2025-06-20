@@ -3,7 +3,6 @@ package com.example.btl;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,63 +11,86 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity2 extends AppCompatActivity {
 
     private EditText etEmail, etPassword;
     private Button btnLogin, btnSignup;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+
+    private final String ADMIN_EMAIL = "admin@gmail.com";
+    private final String ADMIN_PASS = "123456";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
 
-        // Ánh xạ các thành phần
-        etEmail = findViewById(R.id.et_email);           // EditText nhập email
-        etPassword = findViewById(R.id.et_pass);     // EditText nhập password
-        btnLogin = findViewById(R.id.btn_login);         // Nút Đăng nhập
-        btnSignup = findViewById(R.id.btn_signup);       // Nút Đăng ký
-        TextView tvForgot = findViewById(R.id.tv_forgot_password);  // TextView Quên mật khẩu
+        etEmail = findViewById(R.id.et_email);
+        etPassword = findViewById(R.id.et_pass);
+        btnLogin = findViewById(R.id.btn_login);
+        btnSignup = findViewById(R.id.btn_signup);
+        TextView tvForgot = findViewById(R.id.tv_forgot_password);
 
-
-        // Khởi tạo FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
-        // Xử lý đăng nhập
         btnLogin.setOnClickListener(view -> {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
             if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                Toast.makeText(LoginActivity2.this, "Vui lòng nhập đầy đủ email và mật khẩu", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Vui lòng nhập đầy đủ email và mật khẩu", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Nếu là admin cứng thì không kiểm tra Firebase Auth
+            if (email.equals(ADMIN_EMAIL) && password.equals(ADMIN_PASS)) {
+                Toast.makeText(this, "Đăng nhập admin thành công", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, AdminActivity.class));
+                finish();
+                return;
+            }
+
+            // Nếu là người dùng thường
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity2.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity2.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                            String uid = mAuth.getCurrentUser().getUid();
+
+                            db.collection("users").document(uid).get()
+                                    .addOnSuccessListener(documentSnapshot -> {
+                                        if (documentSnapshot.exists()) {
+                                            String role = documentSnapshot.getString("role");
+                                            if ("admin".equals(role)) {
+                                                Toast.makeText(this, "Chào Admin!", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(this, AdminActivity.class));
+                                            } else {
+                                                Toast.makeText(this, "Chào người dùng!", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(this, UserActivity.class));
+                                            }
+                                            finish();
+                                        } else {
+                                            Toast.makeText(this, "Không tìm thấy thông tin người dùng.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(e ->
+                                            Toast.makeText(this, "Lỗi truy vấn dữ liệu: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                         } else {
-                            Toast.makeText(LoginActivity2.this, "Email hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Email hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                         }
                     });
         });
 
-        // Xử lý đăng ký
-        btnSignup.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity2.this, RegisterActivity.class);
-            startActivity(intent);
-        });
+        btnSignup.setOnClickListener(view ->
+                startActivity(new Intent(this, RegisterActivity.class))
+        );
 
-        // Quên mật khẩu
-        tvForgot.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity2.this, ForgotActivity.class);
-            startActivity(intent);
-        });
-
+        tvForgot.setOnClickListener(view ->
+                startActivity(new Intent(this, ForgotActivity.class))
+        );
     }
 }
+
