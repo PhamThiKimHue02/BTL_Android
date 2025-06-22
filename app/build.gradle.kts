@@ -44,6 +44,8 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+
+
     implementation(platform("com.google.firebase:firebase-bom:33.14.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
@@ -52,4 +54,3 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
 
 }
-apply(plugin = "com.google.gms.google-services")

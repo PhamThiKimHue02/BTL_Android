@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Tên nhiệm vụ -->
+        <EditText
+            android:id="@+id/edtTaskName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên nhiệm vụ"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:minHeight="48dp" />
+
+        <!-- Mô tả -->
+        <EditText
+            android:id="@+id/edtTaskDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mô tả"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:minHeight="48dp"
+            android:layout_marginTop="12dp" />
+
+        <!-- Ngày bắt đầu và kết thúc -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <Button
+                android:id="@+id/btnTaskStartDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ngày bắt đầu"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/btnTaskEndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:text="Ngày kết thúc"
+                android:minHeight="48dp" />
+        </LinearLayout>
+
+        <!-- Thêm thành viên -->
+        <EditText
+            android:id="@+id/edtTaskMember"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="Thêm thành viên"
+            android:padding="12dp"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp" />
+
+
+        <Button
+            android:id="@+id/btnAddTaskMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="➕ Thêm"
+            android:layout_marginTop="8dp" />
+
+        <!-- Danh sách thành viên -->
+        <LinearLayout
+            android:id="@+id/taskMemberContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp" />
+
+        <!-- Nút tạo nhiệm vụ -->
+        <Button
+            android:id="@+id/btnCreateTask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="✅ Tạo nhiệm vụ"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white"
+            android:minHeight="48dp" />
+    </LinearLayout>
+</ScrollView>
