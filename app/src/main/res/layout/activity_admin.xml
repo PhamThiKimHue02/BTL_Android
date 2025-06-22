@@ -1,112 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="#F8F8F8"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 📊 Thống kê nhanh -->
-    <TextView
-        android:text="Tổng quan công việc"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:weightSum="3"
+    <!-- Phần AppBar chứa Toolbar và TabLayout -->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:background="@android:color/white"
-            android:elevation="4dp"
-            android:padding="12dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
-            <TextView android:text="Tổng việc" android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView android:id="@+id/txtTotalTasks" android:text="12" android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+        <!-- Thanh tiêu đề -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:title="QUẢN LÝ CÔNG VIỆC NHÓM"
+            android:titleTextColor="@android:color/white" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:background="@android:color/white"
-            android:elevation="4dp"
-            android:padding="12dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
-            <TextView android:text="Trễ hạn" android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView android:id="@+id/txtLateTasks" android:text="3" android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_margin="4dp"
-            android:background="@android:color/white"
-            android:elevation="4dp"
-            android:padding="12dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content">
-            <TextView android:text="% Hoàn thành" android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView android:id="@+id/txtCompletedPercent" android:text="75%" android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- 📌 Lọc -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/edtSearch"
-            android:hint="Tìm theo nhân viên..."
-            android:layout_weight="1"
-            android:layout_width="0dp"
+        <!-- TabLayout điều hướng giữa các tab -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutAdmin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:padding="12dp"
-            android:background="@android:drawable/editbox_background" />
+            android:background="?attr/colorPrimary"
+            app:tabIndicatorColor="@android:color/white"
+            app:tabSelectedTextColor="@android:color/white"
+            app:tabTextColor="#BBB" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <Button
-            android:id="@+id/btnFilter"
-            android:text="Lọc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp" />
-    </LinearLayout>
-
-    <!-- 📋 Danh sách công việc -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerTasks"
+    <!-- ViewPager2 để hiển thị nội dung theo từng tab -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerAdmin"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="8dp"
-        android:clipToPadding="false"
-        android:contentDescription="Danh sách công việc" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-</LinearLayout>
+    <!-- Nút thêm công việc -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="Thêm công việc"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

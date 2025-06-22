@@ -7,51 +7,51 @@
     android:layout_height="match_parent"
     android:padding="32dp"
     android:background="@android:color/white"
-    tools:context=".ResetPassActivity">
+    tools:ignore="ExtraText,MissingClass">
 
-    <!-- Icon email -->
+    <!-- bạn dùng icon phù hợp -->
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="16dp"
-        android:background="@android:color/black"
-        android:padding="12dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="171dp"
+        android:layout_height="118dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/tvSendStatus"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img_1" />
 
-    <!-- Text trạng thái -->
     <TextView
         android:id="@+id/tvSendStatus"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
         android:text="Đang gửi email..."
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintTop_toBottomOf="@id/imageView2"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        tools:layout_editor_absoluteY="216dp"
+        tools:ignore="MissingConstraints" />
 
-    <!-- Nút quay lại -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBackToLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Quay lại Đăng nhập"
+        android:text="Quay lại đăng nhập"
         android:textColor="@android:color/white"
         android:backgroundTint="@android:color/black"
-        android:layout_marginTop="24dp"
+        app:cornerRadius="20dp"
+        app:iconPadding="12dp"
+        app:iconGravity="textStart"
         android:padding="12dp"
-        app:cornerRadius="100dp"
         app:layout_constraintTop_toBottomOf="@id/tvSendStatus"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="36dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

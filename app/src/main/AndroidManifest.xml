@@ -29,6 +29,11 @@
         <activity android:name=".MainActivity" /> <!-- Màn hình quên mật khẩu -->
         <activity android:name=".ForgotActivity" /> <!-- Màn hình reset mật khẩu -->
         <activity android:name=".ResetPassActivity" />
+        <activity android:name=".add.AddTaskActivity" />
+        <activity android:name=".Admin.capnhatduan" />
+        <activity android:name=".Admin.ThemNhiemVuActivity" />
+
+
     </application>
 
 </manifest>
