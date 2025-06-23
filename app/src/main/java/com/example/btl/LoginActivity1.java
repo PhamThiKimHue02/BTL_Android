@@ -15,7 +15,7 @@ public class LoginActivity1 extends AppCompatActivity{
 
         Button btnLogin = findViewById(R.id.btnLogin);
         Button btnSignup = findViewById(R.id.btnSignup);
-        TextView tvForgot = findViewById(R.id.textView2); // ánh xạ TextView "Forgot Password?"
+        TextView tvForgot = findViewById(R.id.textView2);
 
         // Đăng nhập
         btnLogin.setOnClickListener(v -> {

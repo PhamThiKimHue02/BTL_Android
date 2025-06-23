@@ -32,7 +32,10 @@
         <activity android:name=".add.AddTaskActivity" />
         <activity android:name=".Admin.capnhatduan" />
         <activity android:name=".Admin.ThemNhiemVuActivity" />
-
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".ViewProfileActivity" />
+        <activity android:name=".EditPassActivity" />
 
     </application>
 

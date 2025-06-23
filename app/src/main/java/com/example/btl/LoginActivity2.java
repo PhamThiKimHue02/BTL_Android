@@ -46,7 +46,7 @@ public class LoginActivity2 extends AppCompatActivity {
                 return;
             }
 
-            // Nếu là admin cứng thì không kiểm tra Firebase Auth
+            // Nếu là admin
             if (email.equals(ADMIN_EMAIL) && password.equals(ADMIN_PASS)) {
                 Toast.makeText(this, "Đăng nhập admin thành công", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, AdminActivity.class));
@@ -54,7 +54,7 @@ public class LoginActivity2 extends AppCompatActivity {
                 return;
             }
 
-            // Nếu là người dùng thường
+            // Nếu là người dùng
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {

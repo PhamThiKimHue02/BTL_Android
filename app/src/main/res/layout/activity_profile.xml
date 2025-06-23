@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F7F7F7">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- Ảnh đại diện -->
+        <ImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="114dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="16dp"
+            android:padding="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile" />
+
+        <!-- Tên người dùng -->
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên người dùng"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="email@example.com"
+            android:textSize="16sp"
+            android:textColor="#777777"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Nút Chỉnh sửa -->
+        <Button
+            android:id="@+id/btnEditProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chỉnh sửa thông tin"
+            android:backgroundTint="#ADD8E6"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Nút Xem Thông tin -->
+        <Button
+            android:id="@+id/btnViewInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Xem chi tiết"
+            android:backgroundTint="#ADD8E6"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Nút Đổi mật khẩu -->
+        <Button
+            android:id="@+id/btnChangePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đổi mật khẩu"
+            android:backgroundTint="#ADD8E6"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Nút Đăng xuất -->
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đăng xuất"
+            android:backgroundTint="#ADD8E6"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+</ScrollView>

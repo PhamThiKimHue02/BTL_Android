@@ -1,5 +1,6 @@
 package com.example.btl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,12 +55,13 @@ public class UserActivity extends AppCompatActivity {
         });
 
         navTask.setOnClickListener(v -> {
-            Toast.makeText(this, "Công việc - chưa làm", Toast.LENGTH_SHORT).show();
-            // startActivity(new Intent(this, TaskListActivity.class));
+            startActivity(new Intent(this, ProfileActivity.class));
+            finish();
+            // điều hươg sang trang profile
         });
 
         navAccount.setOnClickListener(v -> {
-            Toast.makeText(this, "Tài khoản - chưa làm", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, ProfileActivity.class));
             // startActivity(new Intent(this, AccountActivity.class));
         });
 
