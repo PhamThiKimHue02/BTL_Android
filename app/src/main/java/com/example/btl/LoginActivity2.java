@@ -46,15 +46,15 @@ public class LoginActivity2 extends AppCompatActivity {
                 return;
             }
 
-            // Nếu là admin cứng thì không kiểm tra Firebase Auth
+            // Nếu là admin
             if (email.equals(ADMIN_EMAIL) && password.equals(ADMIN_PASS)) {
-                Toast.makeText(this, "Đăng nhập admin thành công", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Đăng nhập trang quản lý thành công!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, AdminActivity.class));
                 finish();
                 return;
             }
 
-            // Nếu là người dùng thường
+            // Nếu là người dùng
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
@@ -65,10 +65,10 @@ public class LoginActivity2 extends AppCompatActivity {
                                         if (documentSnapshot.exists()) {
                                             String role = documentSnapshot.getString("role");
                                             if ("admin".equals(role)) {
-                                                Toast.makeText(this, "Chào mừng bạn đến với trang quản lý!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(this, "Đăng nhập trang quản lý thành công!", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(this, AdminActivity.class));
                                             } else {
-                                                Toast.makeText(this, "Chào mừng bạn đến với trang nhân viên!", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(this, "Đăng nhập trang nhân viên thành công!", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(this, UserActivity.class));
                                             }
                                             finish();

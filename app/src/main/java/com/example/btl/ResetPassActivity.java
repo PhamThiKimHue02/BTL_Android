@@ -40,11 +40,11 @@ public class ResetPassActivity extends AppCompatActivity {
             Toast.makeText(this, "Email không hợp lệ.", Toast.LENGTH_SHORT).show();
         }
 
-        // Xử lý sự kiện nhấn nút "Quay lại Đăng nhập"
+
         btnBackToLogin.setOnClickListener(view -> {
             Intent intent = new Intent(ResetPassActivity.this, LoginActivity2.class);
             startActivity(intent);
-            finish(); // Kết thúc Activity hiện tại
+            finish();
         });
     }
 }

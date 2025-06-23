@@ -20,6 +20,10 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class AdminActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
@@ -40,7 +44,11 @@ public class AdminActivity extends AppCompatActivity {
 
                     TaskListFragment fragment = adapter.getTaskListFragment();
                     if (fragment != null) {
-                        fragment.addProject(name, desc, start, end, priority, members, projectId);
+                        List<String> membersList = new ArrayList<>();
+                        if (members != null && !members.isEmpty()) {
+                            membersList = Arrays.asList(members.split(",\\s*"));
+                        }
+                        fragment.addProject(name, desc, start, end, priority, membersList, projectId);
                     }
 
                     Toast.makeText(this, "Đã tạo dự án thành công", Toast.LENGTH_SHORT).show();

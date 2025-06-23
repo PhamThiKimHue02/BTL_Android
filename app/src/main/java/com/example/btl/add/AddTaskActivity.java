@@ -3,14 +3,8 @@ package com.example.btl.add;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,11 +12,7 @@ import com.example.btl.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -60,25 +50,32 @@ public class AddTaskActivity extends AppCompatActivity {
 
         btnAddMember.setOnClickListener(v -> {
             String name = edtMember.getText().toString().trim();
-            if (!name.isEmpty()) {
-                db.collection("Users")
-                        .whereEqualTo("fullName", name)
 
-                        .get()
-                        .addOnSuccessListener(query -> {
-                            if (!query.isEmpty()) {
-                                String email = query.getDocuments().get(0).getString("email");
+            if (name.isEmpty()) {
+                edtMember.setError("Vui lòng nhập tên thành viên!");
+                return;
+            }
+
+            db.collection("users")
+                    .whereEqualTo("fullName", name)
+                    .get()
+                    .addOnSuccessListener(query -> {
+                        if (!query.isEmpty()) {
+                            String email = query.getDocuments().get(0).getString("email");
+
+                            if (email != null && !memberEmails.contains(email)) {
                                 memberEmails.add(email);
                                 addMemberView(name, email);
                                 edtMember.setText("");
+                                Toast.makeText(this, "Đã thêm: " + name, Toast.LENGTH_SHORT).show();
                             } else {
-                                edtMember.setError("Không tìm thấy người dùng!");
+                                Toast.makeText(this, "Thành viên đã được thêm!", Toast.LENGTH_SHORT).show();
                             }
-                        })
-                        .addOnFailureListener(e -> {
-                            edtMember.setError("Lỗi khi tìm người dùng!");
-                        });
-            }
+                        } else {
+                            edtMember.setError("Không tìm thấy người dùng tên '" + name + "'");
+                        }
+                    })
+                    .addOnFailureListener(e -> edtMember.setError("Lỗi khi tìm người dùng!"));
         });
 
         btnCreateProject.setOnClickListener(v -> {
@@ -94,7 +91,10 @@ public class AddTaskActivity extends AppCompatActivity {
             else if (priorityId == R.id.rbLow) priority = "Thấp";
             else priority = "Không rõ";
 
-            List<String> members = new ArrayList<>(memberEmails);
+            if (memberEmails.isEmpty()) {
+                Toast.makeText(this, "Vui lòng thêm ít nhất một thành viên!", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             Map<String, Object> project = new HashMap<>();
             project.put("name", name);
@@ -102,34 +102,23 @@ public class AddTaskActivity extends AppCompatActivity {
             project.put("startDate", startDate);
             project.put("endDate", endDate);
             project.put("priority", priority);
-            project.put("members", members);
+            project.put("members", new ArrayList<>(memberEmails));
 
             db.collection("projects")
                     .add(project)
                     .addOnSuccessListener(documentReference -> {
-                        String projectId = documentReference.getId();
-
-                        StringBuilder memberNames = new StringBuilder();
-                        for (int i = 0; i < memberContainer.getChildCount(); i++) {
-                            LinearLayout row = (LinearLayout) memberContainer.getChildAt(i);
-                            TextView tvName = (TextView) row.getChildAt(0); // tên
-                            memberNames.append(tvName.getText().toString()).append("\n");
-                        }
-
                         Intent intent = new Intent();
-                        intent.putExtra("projectId", projectId);
+                        intent.putExtra("projectId", documentReference.getId());
                         intent.putExtra("projectName", name);
                         intent.putExtra("description", desc);
                         intent.putExtra("startDate", startDate);
                         intent.putExtra("endDate", endDate);
                         intent.putExtra("priority", priority);
-                        intent.putExtra("members", memberNames.toString());
+                        intent.putExtra("members", String.join("\n", memberEmails));
                         setResult(RESULT_OK, intent);
                         finish();
                     })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(this, "Lưu dự án thất bại!", Toast.LENGTH_SHORT).show();
-                    });
+                    .addOnFailureListener(e -> Toast.makeText(this, "Lưu dự án thất bại!", Toast.LENGTH_SHORT).show());
         });
     }
 
@@ -137,7 +126,7 @@ public class AddTaskActivity extends AppCompatActivity {
         Calendar calendar = isStartDate ? startCalendar : endCalendar;
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
-                (DatePicker view, int year, int month, int dayOfMonth) -> {
+                (view, year, month, dayOfMonth) -> {
                     calendar.set(year, month, dayOfMonth);
                     String dateStr = dayOfMonth + "/" + (month + 1) + "/" + year;
                     if (isStartDate) {
@@ -159,17 +148,21 @@ public class AddTaskActivity extends AppCompatActivity {
         memberRow.setPadding(8, 8, 8, 8);
 
         TextView tvName = new TextView(this);
-        tvName.setText("👤 " + name);
+        tvName.setText(name);
         tvName.setTextSize(16);
+        tvName.setTextColor(getResources().getColor(android.R.color.black));
 
         TextView tvEmail = new TextView(this);
-        tvEmail.setText("✉️ " + email);
+        tvEmail.setText(email);
         tvEmail.setTextSize(14);
         tvEmail.setTextColor(getResources().getColor(android.R.color.darker_gray));
 
         Button btnRemove = new Button(this);
-        btnRemove.setText("XÓA");
-        btnRemove.setOnClickListener(v -> memberContainer.removeView(memberRow));
+        btnRemove.setText("Xóa");
+        btnRemove.setOnClickListener(v -> {
+            memberContainer.removeView(memberRow);
+            memberEmails.remove(email);
+        });
 
         memberRow.addView(tvName);
         memberRow.addView(tvEmail);

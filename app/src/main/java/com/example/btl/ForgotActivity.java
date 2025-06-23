@@ -39,13 +39,13 @@ public class ForgotActivity extends AppCompatActivity {
                 return;
             }
 
-            // Nếu hợp lệ, chuyển sang màn hình tiếp theo (ví dụ: ResetPasswordActivity)
+
             Intent intent = new Intent(ForgotActivity.this, ResetPassActivity.class);
             intent.putExtra("email", email);
             startActivity(intent);
         });
 
-        // Xử lý nút "Log In"
+
         btnLogin.setOnClickListener(view -> {
             Intent intent = new Intent(ForgotActivity.this, LoginActivity2.class);
             startActivity(intent);

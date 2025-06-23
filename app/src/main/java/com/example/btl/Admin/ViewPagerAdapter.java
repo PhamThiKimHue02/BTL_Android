@@ -7,8 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
 
-    private final TaskListFragment taskListFragment = new TaskListFragment();  // Giữ nguyên 1 instance
-    private final MyTaskFragment myTaskFragment = new MyTaskFragment();        // Nếu cần giữ cả 2 tab
+    private final TaskListFragment taskListFragment = new TaskListFragment();  // Tab 1
+    private final FragmentCuaToiAdmin cuaToiFragment = new FragmentCuaToiAdmin(); // Tab 2
 
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -20,7 +20,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         if (position == 0) {
             return taskListFragment;
         } else {
-            return myTaskFragment;
+            return cuaToiFragment;
         }
     }
 
@@ -29,7 +29,6 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         return 2;
     }
 
-    // Cho phép AdminActivity gọi để load lại dữ liệu
     public TaskListFragment getTaskListFragment() {
         return taskListFragment;
     }

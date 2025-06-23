@@ -136,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     .build();
                             user.updateProfile(profileUpdates);
 
-                            // Lưu thông tin người dùng vào Firestore
+
                             FirebaseFirestore db = FirebaseFirestore.getInstance();
                             Map<String, Object> userData = new HashMap<>();
                             userData.put("fullName", fullName);

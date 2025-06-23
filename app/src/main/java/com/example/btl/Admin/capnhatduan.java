@@ -93,7 +93,15 @@ public class capnhatduan extends AppCompatActivity {
 
                     edtName.setText(doc.getString("name"));
                     edtDesc.setText(doc.getString("description"));
-                    edtMembers.setText(doc.getString("members"));
+                    Object membersObj = doc.get("members");
+                    if (membersObj instanceof java.util.List) {
+                        java.util.List<?> membersList = (java.util.List<?>) membersObj;
+                        edtMembers.setText(android.text.TextUtils.join(", ", membersList));
+                    } else if (membersObj instanceof String) {
+                        edtMembers.setText((String) membersObj);
+                    } else {
+                        edtMembers.setText("");
+                    }
                     btnStart.setText(doc.getString("startDate"));
                     btnEnd.setText(doc.getString("endDate"));
 
@@ -109,7 +117,7 @@ public class capnhatduan extends AppCompatActivity {
     private void updateProject() {
         String name = edtName.getText().toString().trim();
         String desc = edtDesc.getText().toString().trim();
-        String members = edtMembers.getText().toString().trim();
+        String membersStr = edtMembers.getText().toString().trim();
         String start = btnStart.getText().toString();
         String end = btnEnd.getText().toString();
 
@@ -119,10 +127,18 @@ public class capnhatduan extends AppCompatActivity {
         else if (checkedId == R.id.rbEditMedium) priority = "Trung bình";
         else if (checkedId == R.id.rbEditLow) priority = "Thấp";
 
+        java.util.List<String> membersList = new java.util.ArrayList<>();
+        if (!membersStr.isEmpty()) {
+            for (String m : membersStr.split(",")) {
+                String trimmed = m.trim();
+                if (!trimmed.isEmpty()) membersList.add(trimmed);
+            }
+        }
+
         Map<String, Object> updated = new HashMap<>();
         updated.put("name", name);
         updated.put("description", desc);
-        updated.put("members", members);
+        updated.put("members", membersList);
         updated.put("startDate", start);
         updated.put("endDate", end);
         updated.put("priority", priority);
@@ -147,7 +163,16 @@ public class capnhatduan extends AppCompatActivity {
                         String desc = doc.getString("description");
                         String start = doc.getString("startDate");
                         String end = doc.getString("endDate");
-                        String members = doc.getString("members");
+                        Object membersObj = doc.get("members");
+                        String members;
+                        if (membersObj instanceof java.util.List) {
+                            java.util.List<?> membersList = (java.util.List<?>) membersObj;
+                            members = android.text.TextUtils.join(", ", membersList);
+                        } else if (membersObj instanceof String) {
+                            members = (String) membersObj;
+                        } else {
+                            members = "";
+                        }
 
                         LinearLayout wrapper = new LinearLayout(this);
                         wrapper.setOrientation(LinearLayout.VERTICAL);
