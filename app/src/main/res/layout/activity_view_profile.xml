@@ -23,83 +23,84 @@
 
         <!-- Họ tên -->
         <TextView
-            android:text="Họ và tên"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Họ và tên"
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
             android:textColor="#555555"
-            android:layout_marginBottom="16dp" />
+            android:textSize="20sp" />
 
         <!-- Email -->
         <TextView
-            android:text="Email"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Email"
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvEmailDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
             android:textColor="#555555"
-            android:layout_marginBottom="16dp" />
+            android:textSize="20sp" />
 
         <!-- Số điện thoại -->
         <TextView
-            android:text="Số điện thoại"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Số điện thoại"
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
             android:textColor="#555555"
-            android:layout_marginBottom="16dp" />
+            android:textSize="20sp" />
 
         <!-- Ngày sinh -->
         <TextView
-            android:text="Ngày sinh"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Ngày sinh"
             android:textColor="#000000"
-            android:textSize="16sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvDob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:layout_marginBottom="24dp"
             android:textColor="#555555"
-            android:layout_marginBottom="24dp" />
+            android:textSize="20sp" />
 
        <!-- Nút Quay lại -->
         <Button
             android:id="@+id/btnBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quay lại"
             android:backgroundTint="#ADD8E6"
-            android:textColor="#FFFFFF" />
+            android:text="Quay lại"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
     </LinearLayout>
 </ScrollView>

@@ -26,59 +26,63 @@
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:text="Tên người dùng"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="4dp" />
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
         <!-- Email -->
         <TextView
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:text="email@example.com"
-            android:textSize="16sp"
             android:textColor="#777777"
-            android:layout_marginBottom="24dp" />
+            android:textSize="20sp" />
 
         <!-- Nút Chỉnh sửa -->
         <Button
             android:id="@+id/btnEditProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chỉnh sửa thông tin"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="#ADD8E6"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="12dp" />
+            android:text="Chỉnh sửa thông tin"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
         <!-- Nút Xem Thông tin -->
         <Button
             android:id="@+id/btnViewInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Xem chi tiết"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="#ADD8E6"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="12dp" />
+            android:text="Xem chi tiết"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
         <!-- Nút Đổi mật khẩu -->
         <Button
             android:id="@+id/btnChangePassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Đổi mật khẩu"
+            android:layout_marginBottom="12dp"
             android:backgroundTint="#ADD8E6"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="12dp" />
+            android:text="Đổi mật khẩu"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
         <!-- Nút Đăng xuất -->
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Đăng xuất"
             android:backgroundTint="#ADD8E6"
-            android:textColor="#FFFFFF" />
+            android:text="Đăng xuất"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
 
     </LinearLayout>
 </ScrollView>

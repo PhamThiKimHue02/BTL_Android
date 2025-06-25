@@ -15,37 +15,40 @@
             android:id="@+id/tvChangeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:text="Đổi mật khẩu"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp" />
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/etOldPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:hint="Mật khẩu hiện tại"
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:paddingVertical="12dp"
-            android:layout_marginBottom="16dp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/etNewPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:hint="Mật khẩu mới"
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:paddingVertical="12dp"
-            android:layout_marginBottom="24dp" />
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btnChangePassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#ADD8E6"
             android:text="Đổi mật khẩu"
-            android:backgroundTint="#2196F3"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/black"
+            android:textSize="24sp" />
     </LinearLayout>
 </ScrollView>

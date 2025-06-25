@@ -14,41 +14,45 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
             android:text="Chỉnh sửa thông tin"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp" />
+            android:textSize="34sp"
+            android:textStyle="bold" />
 
         <!-- Họ tên -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Họ và tên"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
             android:hint="Nhập họ và tên"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textSize="20sp" />
 
         <!-- Số điện thoại -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Số điện thoại"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
             android:hint="Nhập số điện thoại"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:textSize="20sp" />
 
         <!-- Nút -->
         <LinearLayout
@@ -62,18 +66,22 @@
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
                 android:backgroundTint="#ADD8E6"
-                android:text="Lưu thay đổi" />
+                android:minHeight="48dp"
+                android:text="Lưu thay đổi"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/btnCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
+                android:layout_marginStart="16dp"
                 android:backgroundTint="#ADD8E6"
+                android:minHeight="48dp"
                 android:text="Hủy"
-                android:layout_marginStart="16dp" />
+                android:textColor="@color/black"
+                android:textSize="24sp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

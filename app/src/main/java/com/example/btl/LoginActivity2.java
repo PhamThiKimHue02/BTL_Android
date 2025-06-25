@@ -20,9 +20,6 @@ public class LoginActivity2 extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
-    private final String ADMIN_EMAIL = "admin@gmail.com";
-    private final String ADMIN_PASS = "123456";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,20 +38,7 @@ public class LoginActivity2 extends AppCompatActivity {
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 
-            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                Toast.makeText(this, "Vui lòng nhập đầy đủ email và mật khẩu", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // Nếu là admin
-            if (email.equals(ADMIN_EMAIL) && password.equals(ADMIN_PASS)) {
-                Toast.makeText(this, "Đăng nhập trang quản lý thành công!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, AdminActivity.class));
-                finish();
-                return;
-            }
-
-            // Nếu là người dùng
+            // Phân quyền
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {

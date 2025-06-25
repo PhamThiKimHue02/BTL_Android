@@ -109,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="56dp"
-            android:text="💾 Cập nhật dự án"
+            android:text="Cập nhật dự án"
             android:layout_marginTop="16dp"
             android:backgroundTint="#4CAF50"
             android:textColor="@android:color/white" />
@@ -120,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="56dp"
-            android:text="➕ Thêm nhiệm vụ"
+            android:text="Thêm nhiệm vụ"
             android:layout_marginTop="8dp"
             android:backgroundTint="#03A9F4"
             android:textColor="@android:color/white" />
