@@ -60,8 +60,6 @@ public class EditPassActivity extends AppCompatActivity {
                     })
                     .addOnFailureListener(e ->
                             Toast.makeText(this, "Mật khẩu cũ không đúng", Toast.LENGTH_SHORT).show());
-        } else {
-            Toast.makeText(this, "Không tìm thấy người dùng", Toast.LENGTH_SHORT).show();
         }
     }
 }

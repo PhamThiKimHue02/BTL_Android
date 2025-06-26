@@ -145,9 +145,9 @@ public class capnhatduan extends AppCompatActivity {
 
         db.collection("projects").document(projectId).update(updated)
                 .addOnSuccessListener(unused ->
-                        Toast.makeText(this, "✅ Cập nhật dự án thành công", Toast.LENGTH_SHORT).show())
+                        Toast.makeText(this, "Cập nhật dự án thành công", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e ->
-                        Toast.makeText(this, "❌ Cập nhật thất bại", Toast.LENGTH_SHORT).show());
+                        Toast.makeText(this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show());
     }
 
     private void loadTasksForProject() {
@@ -195,7 +195,7 @@ public class capnhatduan extends AppCompatActivity {
                         tv.setSingleLine(false);
 
                         Button btnDelete = new Button(this);
-                        btnDelete.setText("❌ XÓA");
+                        btnDelete.setText("XÓA");
                         btnDelete.setOnClickListener(v -> {
                             doc.getReference().delete().addOnSuccessListener(unused -> {
                                 Toast.makeText(this, "Đã xóa nhiệm vụ", Toast.LENGTH_SHORT).show();

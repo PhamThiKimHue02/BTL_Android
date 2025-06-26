@@ -59,7 +59,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // ✅ Kiểm tra phiên đăng nhập Firebase
+        // Kiểm tra phiên đăng nhập Firebase
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             Toast.makeText(this, "Phiên đăng nhập đã hết. Vui lòng đăng nhập lại.", Toast.LENGTH_SHORT).show();

@@ -108,11 +108,11 @@ public class ThemNhiemVuActivity extends AppCompatActivity {
                 .collection("tasks")
                 .add(task)
                 .addOnSuccessListener(docRef -> {
-                    Toast.makeText(this, "✅ Tạo nhiệm vụ thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Tạo nhiệm vụ thành công", Toast.LENGTH_SHORT).show();
                     finish(); // Quay lại màn hình trước
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "❌ Lỗi khi tạo nhiệm vụ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Lỗi khi tạo nhiệm vụ", Toast.LENGTH_SHORT).show();
                 });
     }
 }

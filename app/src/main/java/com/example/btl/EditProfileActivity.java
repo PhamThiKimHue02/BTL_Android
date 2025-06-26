@@ -40,12 +40,6 @@ public class EditProfileActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if (currentUser == null) {
-            Toast.makeText(this, "Người dùng chưa đăng nhập", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
         userId = currentUser.getUid();
         db = FirebaseFirestore.getInstance();
 

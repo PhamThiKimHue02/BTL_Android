@@ -34,7 +34,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
         db = FirebaseFirestore.getInstance();
-
+//ánh xạ giao diện, kết nối đến xml
         edtProjectName = findViewById(R.id.edtProjectName);
         edtDescription = findViewById(R.id.edtDescription);
         edtMember = findViewById(R.id.edtMember);
@@ -44,10 +44,10 @@ public class AddTaskActivity extends AppCompatActivity {
         btnAddMember = findViewById(R.id.btnAddMember);
         btnCreateProject = findViewById(R.id.btnCreateProject);
         memberContainer = findViewById(R.id.memberContainer);
-
+//chọn ngày bắt đầu/kết thúc
         btnStartDate.setOnClickListener(v -> showDatePicker(true));
         btnEndDate.setOnClickListener(v -> showDatePicker(false));
-
+//kỉểm tra tên thành viên xem có rỗng không
         btnAddMember.setOnClickListener(v -> {
             String name = edtMember.getText().toString().trim();
 
@@ -55,12 +55,14 @@ public class AddTaskActivity extends AppCompatActivity {
                 edtMember.setError("Vui lòng nhập tên thành viên!");
                 return;
             }
-
+//tìm user bằng fullname
             db.collection("users")
                     .whereEqualTo("fullName", name)
                     .get()
                     .addOnSuccessListener(query -> {
-                        if (!query.isEmpty()) {
+                        if (!query.isEmpty())
+                        //lấy email,thêm vào danh sách và hiển thị lên giao diện
+                        {
                             String email = query.getDocuments().get(0).getString("email");
 
                             if (email != null && !memberEmails.contains(email)) {

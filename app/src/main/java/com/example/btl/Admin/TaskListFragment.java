@@ -159,7 +159,7 @@ public class TaskListFragment extends Fragment {
             db.collection("projects").document(projectId)
                     .update("status", "Đã hoàn thành và xác nhận")
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(getContext(), "✅ Dự án đã được xác nhận hoàn thành", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Dự án đã được xác nhận hoàn thành", Toast.LENGTH_SHORT).show();
                         projectContainer.removeView(layout);
                     });
         });

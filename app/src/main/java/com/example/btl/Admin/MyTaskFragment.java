@@ -26,7 +26,7 @@ public class MyTaskFragment extends Fragment {
 
         // Hiển thị nội dung đơn giản
         TextView textView = new TextView(getContext());
-        textView.setText("✅ Danh sách công việc của tôi");
+        textView.setText("Danh sách công việc của tôi");
         textView.setTextSize(20);
         textView.setPadding(40, 60, 40, 60);
 
